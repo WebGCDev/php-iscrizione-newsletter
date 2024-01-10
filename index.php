@@ -1,3 +1,19 @@
+<?php
+if (empty($_GET['mail'])) {
+    $joinmail = '';
+} else {
+    if (isset($_GET['mail'])) {
+        $newmail = $_GET['mail'];
+        if (str_contains($newmail, '@') && str_contains($newmail, '.')) {
+            $joinmail = 'Indirizzo e-mail inserito è corretto';
+        } else {
+            $joinmail = 'Indirizzo e-mail inserito non è corretto, deve contenere entrambi i caratteri "@" e "."';
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +28,12 @@
 </head>
 
 <body>
-
+    <form action="index.php" method="GET">
+        <label for="mail">Inserisci qui la tua e-mail</label>
+        <input type="text" id="mail" name="mail">
+        <button class="btn btn-info">Invia</button>
+        <p><?php echo $joinmail ?></p>
+    </form>
 </body>
 
 </html>
